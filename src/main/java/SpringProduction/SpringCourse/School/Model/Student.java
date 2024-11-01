@@ -1,5 +1,6 @@
 package SpringProduction.SpringCourse.School.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,8 +41,9 @@ public class Student {
     )
     @Setter
     @Getter
-    private School school;
 
+    @JsonBackReference
+    private School school;
 
     public Student() {
     }
@@ -62,5 +64,9 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public void setLastName(String s) {
+
     }
 }
