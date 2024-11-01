@@ -2,6 +2,7 @@ package SpringProduction.SpringCourse.School.Controller;
 import SpringProduction.SpringCourse.School.Model.School;
 import SpringProduction.SpringCourse.School.Model.Student;
 import SpringProduction.SpringCourse.School.Model.StudentDto;
+import SpringProduction.SpringCourse.School.Model.StudentResponseDto;
 import SpringProduction.SpringCourse.School.Service.StudentRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +16,20 @@ public class StudentController {
         this.repository = studentRepository;
     }
 
-    // Method Posting to Database
+    // Method Posting to Database insert only the key
     @PostMapping("/students")
-    public Student post(
+    public StudentResponseDto post(
             @RequestBody StudentDto dto
     ) {
         var student = toStudent(dto);
-        return repository.save(student);
+        var savedStudent = repository.save(student);
+        return toStudentResponseDto(savedStudent);
     }
+
+    private StudentResponseDto toStudentResponseDto(Student savedStudent) {
+        return (null);
+    }
+
     // Dto Configuration 
     private Student toStudent(StudentDto dto) {
         var student = new Student();
@@ -35,8 +42,23 @@ public class StudentController {
 
         student.setSchool(school);
         return student;
-
     }
+
+    private StudentResponseDto studentResponseDto(Student student) {
+        return new StudentResponseDto(
+                student.getFirstName(),
+                student.getLastName(),
+                student.getEmail()
+        );
+    }
+      
+//    @PostMapping("/post")
+//    public String post (
+//            @RequestBody String message
+//    ) {
+//        return "You have the Account" + message;
+//    }
+
 
     // To display List of students
     @GetMapping("/students")
@@ -68,7 +90,4 @@ public class StudentController {
     ) {
         repository.deleteById(id);
     }
-
-
-
 }

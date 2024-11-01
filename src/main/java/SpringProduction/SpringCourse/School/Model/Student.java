@@ -1,5 +1,4 @@
 package SpringProduction.SpringCourse.School.Model;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,6 +15,9 @@ public class Student {
     @Setter
     @Getter
     private String firstName;
+
+    @Setter
+    @Getter
     private String lastName;
 
     @Getter
@@ -69,4 +71,6 @@ public class Student {
     public void setLastName(String s) {
 
     }
+
+
 }
