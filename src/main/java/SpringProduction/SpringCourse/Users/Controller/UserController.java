@@ -16,7 +16,7 @@ public class UserController {
 
     // Add Injection
 
-    public UserController(@Qualifier("DB") UserService userService) {
+    public UserController(@Qualifier("DBUserService") UserService userService) {
         this.userService = userService;
     }
 
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     // The Json Object List
-    @GetMapping
+    @GetMapping("list")
     public List<Users> findAllUsers() {
         return userService.findAllUsers();
     }
