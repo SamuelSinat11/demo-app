@@ -2,10 +2,12 @@ package SpringProduction.SpringCourse.Users.Bean;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.Period;
 
+@Setter
 @Entity
 @Table(name = "users")
 public class Users {
@@ -39,31 +41,8 @@ public class Users {
     public Users() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getAge() {
         return Period.between(dob, LocalDate.now()).getYears();
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 }
