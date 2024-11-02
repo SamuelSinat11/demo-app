@@ -1,4 +1,4 @@
-package SpringProduction.SpringCourse.Users;
+package SpringProduction.SpringCourse.Users.Bean;
 
 import java.time.LocalDate;
 
