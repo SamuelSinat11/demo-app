@@ -4,33 +4,40 @@ import SpringProduction.SpringCourse.Users.Bean.Users;
 import SpringProduction.SpringCourse.Users.Dao.UserDao;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class InMemoryUserService implements UserService {
 
-    private final UserDao dao;
-    public InMemoryUserService(InMemoryUserService dao) {
-        this.dao = dao;
+    private final UserDao userDao;  // Inject UserDao instead of InMemoryUserService
+
+    public InMemoryUserService(UserDao userDao) {
+        this.userDao = userDao;
     }
+
     @Override
-    public Users save(Users s) {
-        return null;
+    public Users save(Users user) {
+        return userDao.save(user);
     }
 
     @Override
     public List<Users> findAllUsers() {
-        return null;
+        return userDao.findAllUsers();
     }
 
     @Override
     public Users findUserByEmail(String email) {
-        return null;
+        return userDao.findUserByEmail(email);
     }
 
     @Override
-    public void deleteUserByEmail(String email) {
+    public Users update(Users user) {
+        return userDao.update(user);
+    }
 
+
+    @Override
+    public void delete(String email) {
+        userDao.delete(email);
     }
 }

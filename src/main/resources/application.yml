@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/demo
     username: postgres
-    password: Samuel1144*
+    password: Samuel1144
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -12,3 +12,4 @@ spring:
       hibernate:
         format_sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+

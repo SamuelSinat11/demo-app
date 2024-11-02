@@ -4,15 +4,20 @@ import SpringProduction.SpringCourse.Users.Bean.Users;
 
 import java.util.List;
 
-
 public interface UserService {
 
-    // Post Method
-    Users save(Users s);
-    // List of data
+    // Save a new user
+    Users save(Users user);
+
+    // Retrieve all users
     List<Users> findAllUsers();
-    // Find the email
+
+    // Find a user by email
     Users findUserByEmail(String email);
-    // delete
-    void deleteUserByEmail(String email);
+
+    // Update a user
+    Users update(Users user);
+
+    // Delete a user by email
+    void delete(String email);
 }

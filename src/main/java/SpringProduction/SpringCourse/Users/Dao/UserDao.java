@@ -7,50 +7,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.util.Locale.filter;
 @Repository
 public class UserDao {
 
-    private final List<Users> USERS = new ArrayList<>();
+    private final List<Users> usersList = new ArrayList<>();
 
-
-    public Users save(Users s) {
-        USERS.add(s);
-        return s;
+    public Users save(Users user) {
+        usersList.add(user);
+        return user;
     }
-
 
     public List<Users> findAllUsers() {
-        return USERS;
+        return new ArrayList<>(usersList);  // Return a copy to avoid external modifications
     }
 
-
     public Users findUserByEmail(String email) {
-        return (Users) USERS.stream()
-            .filter(s -> email.equals(s.getEmail()))
+        return usersList.stream()
+                .filter(user -> email.equals(user.getEmail()))
                 .findFirst()
                 .orElse(null);
     }
 
-    public Users update(Users s) {
-        var UsersIndex = IntStream.range(0, USERS.size())
-                .filter(index -> USERS.get(index).getEmail().equals(s.getEmail()))
+    public Users update(Users user) {
+        int userIndex = IntStream.range(0, usersList.size())
+                .filter(index -> usersList.get(index).getEmail().equals(user.getEmail()))
                 .findFirst()
                 .orElse(-1);
-                if (UsersIndex > -1) {
-                    USERS.set(UsersIndex, s);
-                    return s;
-                }
-                return null;
+
+        if (userIndex > -1) {
+            usersList.set(userIndex, user);
+            return user;
+        }
+        return null;
     }
 
-
-
-    public void deleteUserByEmail(String email) {
-        var users = findUserByEmail(email);
-        if ( users != null ) {
-            USERS.remove(users);
+    public Users delete(String email) {
+        Users user = delete(email);
+        if (user != null) {
+            usersList.remove(user);
         }
-
+        return user;
     }
 }
