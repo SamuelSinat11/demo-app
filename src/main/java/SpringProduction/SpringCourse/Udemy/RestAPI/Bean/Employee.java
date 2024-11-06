@@ -1,6 +1,16 @@
 package SpringProduction.SpringCourse.Udemy.RestAPI.Bean;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private String experience;
@@ -44,4 +54,7 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
+
+
 }
