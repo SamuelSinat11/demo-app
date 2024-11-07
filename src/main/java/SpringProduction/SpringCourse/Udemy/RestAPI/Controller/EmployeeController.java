@@ -2,19 +2,27 @@ package SpringProduction.SpringCourse.Udemy.RestAPI.Controller;
 
 import SpringProduction.SpringCourse.Udemy.RestAPI.Bean.Employee;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("Project")
 public class EmployeeController {
 
+
+    // SpringBoot using ResponseEntity
     @GetMapping("API/Employee")
-    public Employee getEmployee() {
+    public ResponseEntity <Employee> getEmployee() {
         Employee info1 = new Employee(1,"Samuel", "JAVA DEVELOPER", 1000);
-        return info1;
-    };
+//        return new ResponseEntity<>(info1, HttpStatus.OK);
+          return ResponseEntity.ok()
+                  .header("custon-header", "Samuel")
+                  .body(info1);
+    }
+
     // SpringBoot RestAPI get data
     // http://localhost:8080/employees/3/Sok/Web/4000
     @GetMapping("Employees")
@@ -47,6 +55,7 @@ public class EmployeeController {
         return new Employee(id, name, experience, 1000);
     }
 
+    // Spring boot Reest API that handles HTTP POST Request - creating new resource
     @PostMapping("Employees/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Employee createEmployee(@RequestBody Employee employee) {
@@ -54,6 +63,20 @@ public class EmployeeController {
         System.out.println(employee.getName());
         System.out.println(employee.getExperience());
         return employee;
+    }
+
+    // Spring boot Rest AIP that handles HTTP PUT Request - updating existing resource
+    @PutMapping("Employees/{id}/update")
+    public Employee updateEmployee(@RequestBody Employee employee, @PathVariable("id") int id) {
+        System.out.println(employee.getName());
+        System.out.println(employee.getExperience());
+        return employee;
+    }
+
+    @DeleteMapping("Employee/{id}/delete")
+    public String deleteEmployee(@PathVariable("id") int id) {
+        System.out.println(id);
+        return "Employee deleted successfully";
     }
 }
 
