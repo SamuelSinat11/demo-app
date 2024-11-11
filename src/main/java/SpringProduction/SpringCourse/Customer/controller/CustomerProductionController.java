@@ -47,6 +47,7 @@ public class CustomerProductionController {
         return ResponseEntity.ok(customerDto);
     }
 
+    // Build Delete Customer REST API
     @DeleteMapping("{customerId}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("customerId") Long customerId) {
         customerService.deleteCustomer(customerId);
