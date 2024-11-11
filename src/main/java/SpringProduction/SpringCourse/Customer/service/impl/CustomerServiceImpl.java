@@ -8,6 +8,9 @@ import SpringProduction.SpringCourse.Employee.exception.ResourceNotFoundExceptio
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -33,6 +36,13 @@ public class CustomerServiceImpl implements CustomerService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Customer with id " + CustomerId + " not found!"));
         return CustomerMapper.mapCustomerToCustomerDto(customerProduction);
+    }
+
+    @Override
+    public List<CustomerDto> getAllCustomers() {
+        List<CustomerProduction> customers = customerRepository.findAll();
+        return customers.stream().map((customerProduction -> CustomerMapper.mapCustomerToCustomerDto(customerProduction)))
+                .collect(Collectors.toList());
     }
 
 

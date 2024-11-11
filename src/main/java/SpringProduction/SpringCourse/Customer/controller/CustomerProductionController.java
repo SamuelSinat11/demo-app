@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/production/api/customers")
@@ -29,6 +31,13 @@ public class CustomerProductionController {
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable("customerId") Long customerId) {
         CustomerDto customerDto = customerService.getCustomerById(customerId);
         return ResponseEntity.ok(customerDto);
+    }
+
+    // Build Get All Employee REST API
+    @GetMapping
+    public ResponseEntity<List<CustomerDto>> getAllCustomers() {
+        List <CustomerDto> customerDtoList = customerService.getAllCustomers();
+        return ResponseEntity.ok(customerDtoList);
     }
 
 
