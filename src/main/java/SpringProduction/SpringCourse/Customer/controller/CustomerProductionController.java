@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/production/api/customers")
 public class CustomerProductionController {
 
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     public CustomerProductionController(CustomerService customerService) {
         this.customerService = customerService;
@@ -33,12 +33,23 @@ public class CustomerProductionController {
         return ResponseEntity.ok(customerDto);
     }
 
-    // Build Get All Employee REST API
+    // Build Get All Customer REST API
     @GetMapping
     public ResponseEntity<List<CustomerDto>> getAllCustomers() {
         List <CustomerDto> customerDtoList = customerService.getAllCustomers();
         return ResponseEntity.ok(customerDtoList);
     }
 
+    // Build update Customer REST API
+    @PutMapping("{customerId}")
+    public ResponseEntity<CustomerDto> updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody CustomerDto updateCustomer) {
+        CustomerDto customerDto = customerService.updateCustomer(customerId,updateCustomer);
+        return ResponseEntity.ok(customerDto);
+    }
 
+    @DeleteMapping("{customerId}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable("customerId") Long customerId) {
+        customerService.deleteCustomer(customerId);
+        return ResponseEntity.ok("Customer deleted successfully");
+    }
 }

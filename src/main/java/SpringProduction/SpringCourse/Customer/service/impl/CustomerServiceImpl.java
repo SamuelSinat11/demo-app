@@ -45,5 +45,29 @@ public class CustomerServiceImpl implements CustomerService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CustomerDto updateCustomer(Long CustomerId, CustomerDto updateCustomerDto) {
+        CustomerProduction customer = customerRepository.findById(CustomerId).orElseThrow(
+                () -> new ResourceNotFoundException("Customer with id " + CustomerId + " not found!")
+        );
 
+        customer.setCustomerName(updateCustomerDto.getCustomerName());
+        customer.setAddress(updateCustomerDto.getAddress());
+        customer.setNumber(updateCustomerDto.getNumber());
+        customer.setProduct(updateCustomerDto.getProduct());
+        customer.setPrice(updateCustomerDto.getPrice());
+        CustomerProduction updatedCustomerObj = customerRepository.save(customer);
+        return CustomerMapper.mapCustomerToCustomerDto(updatedCustomerObj);
+    }
+
+    /**
+     * @param customerId
+     */
+    @Override
+    public void deleteCustomer(Long customerId) {
+        CustomerProduction customer = customerRepository.findById(customerId).orElseThrow(
+                () -> new ResourceNotFoundException("Customer with id " + customerId + " not found!")
+        );
+        customerRepository.deleteById(customerId);
+    }
 }
