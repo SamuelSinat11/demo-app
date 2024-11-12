@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -18,4 +19,5 @@ public class CustomerDto extends CustomerProduction {
     private String number;
     private String product;
     private double price;
+    private LocalDate production;
 }

@@ -5,7 +5,7 @@ import SpringProduction.SpringCourse.Employee.entity.EmployeeProduction;
 import SpringProduction.SpringCourse.Employee.exception.ResourceNotFoundException;
 import SpringProduction.SpringCourse.Employee.repository.EmployeeRepository;
 import SpringProduction.SpringCourse.Employee.service.EmployeeService;
-import SpringProduction.SpringCourse.mapper.EmployeeMapper;
+import SpringProduction.SpringCourse.Employee.mapper.EmployeeMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

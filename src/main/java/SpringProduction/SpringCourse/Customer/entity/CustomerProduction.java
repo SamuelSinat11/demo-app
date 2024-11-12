@@ -4,6 +4,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name= "customerProduction")
 public class CustomerProduction {
@@ -16,14 +18,16 @@ public class CustomerProduction {
     private String number;
     private String product;
     private double price;
+    private LocalDate productionDate;
 
-    public CustomerProduction(Long customerId, String customerName, String address, String number, String product, double price) {
+    public CustomerProduction(Long customerId, String customerName, String address, String number, String product, double price, LocalDate productionDate) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.number = number;
         this.product = product;
         this.price = price;
+        this.productionDate = LocalDate.now();
     }
 
     public CustomerProduction() {
@@ -75,5 +79,13 @@ public class CustomerProduction {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public LocalDate getProductionDate() {
+        return productionDate;
+    }
+
+    public void setProductionDate(LocalDate productionDate) {
+        this.productionDate = productionDate;
     }
 }

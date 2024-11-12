@@ -1,4 +1,4 @@
-package SpringProduction.SpringCourse.mapper;
+package SpringProduction.SpringCourse.Employee.mapper;
 
 import SpringProduction.SpringCourse.Employee.dto.EmployeeDto;
 import SpringProduction.SpringCourse.Employee.entity.EmployeeProduction;
