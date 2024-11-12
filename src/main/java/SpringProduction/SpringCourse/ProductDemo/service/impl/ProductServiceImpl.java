@@ -38,4 +38,27 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public ProductDto updateProduct(Long productId, ProductDto productDto) {
+        ProductionProduct product = productRepository.findById(productId).orElseThrow(
+                () -> new ResourceNotFoundException("Product is not exiting " + productId)
+        );
+        product.setProductName(productDto.getProductName());
+        product.setBrand(productDto.getBrand());
+        product.setImageProduct(productDto.getImageProduct());
+        product.setProductCode(productDto.getProductCode());
+        product.setQuantity(productDto.getQuantity());
+        product.setProductDescription(productDto.getProductDescription());
+        product.setPrice(productDto.getPrice());
+        return ProductMapper.mapProductTOProductDto(productRepository.save(product));
+    }
+
+    @Override
+    public void deleteProduct(Long productId) {
+        ProductionProduct product = productRepository.findById(productId).orElseThrow(
+                () -> new ResourceNotFoundException("Product not found" + Long.toString(productId))
+        );
+        productRepository.delete(product);
+    }
+
 }
