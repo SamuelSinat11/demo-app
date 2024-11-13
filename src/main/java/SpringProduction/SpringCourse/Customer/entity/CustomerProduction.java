@@ -1,8 +1,6 @@
 package SpringProduction.SpringCourse.Customer.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -11,23 +9,23 @@ import java.time.LocalDate;
 public class CustomerProduction {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
     private String customerName;
     private String address;
     private String number;
     private String product;
     private double price;
-    private LocalDate productionDate;
 
-    public CustomerProduction(Long customerId, String customerName, String address, String number, String product, double price, LocalDate productionDate) {
+
+    public CustomerProduction(Long customerId, String customerName, String address, String number, String product, double price) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.number = number;
         this.product = product;
         this.price = price;
-        this.productionDate = LocalDate.now();
+
     }
 
     public CustomerProduction() {
@@ -81,11 +79,5 @@ public class CustomerProduction {
         this.price = price;
     }
 
-    public LocalDate getProductionDate() {
-        return productionDate;
-    }
 
-    public void setProductionDate(LocalDate productionDate) {
-        this.productionDate = productionDate;
-    }
 }

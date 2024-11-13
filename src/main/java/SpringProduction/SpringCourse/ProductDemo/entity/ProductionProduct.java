@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+
 
 import java.time.LocalDate;
 
@@ -20,6 +22,8 @@ public class ProductionProduct {
     private String imageProduct;
     private int quantity;
     private String price;
+
+    @CreationTimestamp
     private LocalDate productionDate;
 
     public ProductionProduct(Long productId, String productCode, String productName, String brand, String productDescription, String imageProduct, String price, int quantity, LocalDate productionDate) {

@@ -11,8 +11,7 @@ public class CustomerMapper {
                 customerProduction.getAddress(),
                 customerProduction.getNumber(),
                 customerProduction.getProduct(),
-                customerProduction.getPrice(),
-                customerProduction.getProductionDate()
+                customerProduction.getPrice()
         );
     }
 
@@ -23,8 +22,7 @@ public class CustomerMapper {
                 customerDto.getAddress(),
                 customerDto.getNumber(),
                 customerDto.getProduct(),
-                customerDto.getPrice(),
-                customerDto.getProductionDate()
+                customerDto.getPrice()
         );
     }
 }

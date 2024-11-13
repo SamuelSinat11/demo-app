@@ -19,5 +19,4 @@ public class CustomerDto extends CustomerProduction {
     private String number;
     private String product;
     private double price;
-    private LocalDate production;
 }
