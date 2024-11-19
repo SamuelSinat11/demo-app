@@ -4,6 +4,7 @@ import SpringProduction.SpringCourse.Customer.dto.CustomerDto;
 import SpringProduction.SpringCourse.Customer.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class CustomerProductionController {
     }
 
     // Build Add Customer  Rest API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PostMapping
     public ResponseEntity<CustomerDto> createCustomer(@RequestBody CustomerDto customerDto) {
         CustomerDto savedCustomer = customerService.createCustomer(customerDto);
@@ -27,6 +29,7 @@ public class CustomerProductionController {
     }
 
     // Build Get Customer REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("{customerId}")
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable("customerId") Long customerId) {
         CustomerDto customerDto = customerService.getCustomerById(customerId);
@@ -34,6 +37,7 @@ public class CustomerProductionController {
     }
 
     // Build Get All Customer REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
     public ResponseEntity<List<CustomerDto>> getAllCustomers() {
         List <CustomerDto> customerDtoList = customerService.getAllCustomers();
@@ -42,12 +46,14 @@ public class CustomerProductionController {
 
     // Build update Customer REST API
     @PutMapping("{customerId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<CustomerDto> updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody CustomerDto updateCustomer) {
         CustomerDto customerDto = customerService.updateCustomer(customerId,updateCustomer);
         return ResponseEntity.ok(customerDto);
     }
 
     // Build Delete Customer REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @DeleteMapping("{customerId}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("customerId") Long customerId) {
         customerService.deleteCustomer(customerId);

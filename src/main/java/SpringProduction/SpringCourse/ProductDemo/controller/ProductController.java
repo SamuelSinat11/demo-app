@@ -4,6 +4,7 @@ import SpringProduction.SpringCourse.ProductDemo.dto.ProductDto;
 import SpringProduction.SpringCourse.ProductDemo.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +21,7 @@ public class ProductController {
     }
 
     // Build Post REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
         ProductDto SavedProduct = productService.createProduct(productDto);
@@ -29,6 +31,7 @@ public class ProductController {
     }
 
     // Build Get REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("{productId}")
     public ResponseEntity<ProductDto> getProduct(@PathVariable("productId") Long productId) {
         ProductDto productDto = productService.getProductById(productId);
@@ -36,6 +39,7 @@ public class ProductController {
     }
 
     // Build GET ALL REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping()
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         List<ProductDto> productDtoList = productService.getAllProducts();
@@ -43,6 +47,7 @@ public class ProductController {
     }
 
     // Build Put for the REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{productId}")
     public ResponseEntity<ProductDto> updateCustomer(@PathVariable("productId") Long productId, @RequestBody ProductDto updateProduct) {
         ProductDto productDto = productService.updateProduct(productId,updateProduct);
@@ -51,6 +56,7 @@ public class ProductController {
 
 
     // Build Delete Customer REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{productId}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("productId") Long productId) {
         productService.deleteProduct(productId);
