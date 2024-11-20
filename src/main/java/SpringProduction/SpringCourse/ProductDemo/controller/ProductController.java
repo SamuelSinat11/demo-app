@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     // Build Post REST API
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
         ProductDto SavedProduct = productService.createProduct(productDto);
@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     // Build Get REST API
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("{productId}")
     public ResponseEntity<ProductDto> getProduct(@PathVariable("productId") Long productId) {
         ProductDto productDto = productService.getProductById(productId);
@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     // Build GET ALL REST API
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping()
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         List<ProductDto> productDtoList = productService.getAllProducts();
@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     // Build Put for the REST API
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PutMapping("{productId}")
     public ResponseEntity<ProductDto> updateCustomer(@PathVariable("productId") Long productId, @RequestBody ProductDto updateProduct) {
         ProductDto productDto = productService.updateProduct(productId,updateProduct);
@@ -56,7 +56,7 @@ public class ProductController {
 
 
     // Build Delete Customer REST API
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @DeleteMapping("{productId}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("productId") Long productId) {
         productService.deleteProduct(productId);
