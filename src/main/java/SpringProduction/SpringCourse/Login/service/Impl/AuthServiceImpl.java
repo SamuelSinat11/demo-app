@@ -1,5 +1,6 @@
 package SpringProduction.SpringCourse.Login.service.Impl;
 
+import SpringProduction.SpringCourse.Login.dto.LoginDto;
 import SpringProduction.SpringCourse.Login.dto.RegisterDto;
 import SpringProduction.SpringCourse.Login.entity.Role;
 import SpringProduction.SpringCourse.Login.entity.User;
@@ -9,6 +10,10 @@ import SpringProduction.SpringCourse.Login.repository.UserRepository;
 import SpringProduction.SpringCourse.Login.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +26,9 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private AuthenticationManager authenticationManager;
+
+
     @Override
     public String register(RegisterDto registerDto) {
         // Check username is already exist in database
@@ -46,5 +54,15 @@ public class AuthServiceImpl implements AuthService {
         user.setRoles(roles);
         userRepository.save(user);
         return "User Registered Successfully! ";
+    }
+
+    @Override
+    public String login(LoginDto loginDto) {
+       Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                loginDto.getUsernameOrEmail(),
+                loginDto.getPassword()
+        ));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return "User logged successfully.";
     }
 }
