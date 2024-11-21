@@ -66,5 +66,5 @@ public class AuthServiceImpl implements AuthService {
         return "User logged successfully.";
     }
 
-    
+
 }
