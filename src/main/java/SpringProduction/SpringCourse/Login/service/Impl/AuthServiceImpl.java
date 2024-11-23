@@ -29,6 +29,7 @@ public class AuthServiceImpl implements AuthService {
     private AuthenticationManager authenticationManager;
 
 
+
     @Override
     public String register(RegisterDto registerDto) {
         // Check username is already exist in database

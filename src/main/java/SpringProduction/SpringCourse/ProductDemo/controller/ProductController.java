@@ -49,7 +49,7 @@ public class ProductController {
     // Build Put for the REST API
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PutMapping("{productId}")
-    public ResponseEntity<ProductDto> updateCustomer(@PathVariable("productId") Long productId, @RequestBody ProductDto updateProduct) {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("productId") Long productId, @RequestBody ProductDto updateProduct) {
         ProductDto productDto = productService.updateProduct(productId,updateProduct);
         return ResponseEntity.ok(productDto);
     }
@@ -58,7 +58,7 @@ public class ProductController {
     // Build Delete Customer REST API
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @DeleteMapping("{productId}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable("productId") Long productId) {
+    public ResponseEntity<String> deleteProduct(@PathVariable("productId") Long productId) {
         productService.deleteProduct(productId);
         return ResponseEntity.ok("Customer deleted successfully");
     }

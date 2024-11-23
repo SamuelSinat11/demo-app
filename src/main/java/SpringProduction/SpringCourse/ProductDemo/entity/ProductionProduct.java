@@ -1,20 +1,18 @@
 package SpringProduction.SpringCourse.ProductDemo.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
 @Entity
-@Table (name = "productionProduct")
+@Table(name = "productionProduct")
 public class ProductionProduct {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Use IDENTITY strategy for auto-increment
     private Long productId;
+
     private String productCode;
     private String productName;
     private String brand;
@@ -41,6 +39,7 @@ public class ProductionProduct {
     public ProductionProduct() {
     }
 
+    // Getters and Setters
     public Long getProductId() {
         return productId;
     }
