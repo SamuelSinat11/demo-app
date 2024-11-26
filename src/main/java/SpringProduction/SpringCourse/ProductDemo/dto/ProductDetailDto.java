@@ -24,5 +24,4 @@ public class ProductDetailDto extends ProductDetail {
     private String thumbnailDetail;
     private LocalDate timestampDetail;
 
-
 }
