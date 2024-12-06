@@ -30,9 +30,7 @@ public class ProductDetail {
 
     @CreationTimestamp
     private LocalDate timestampDetail;
-
-
-
+    
     public ProductDetail(Integer productDetailId, String nameProduct, String brandDetail, int priceDetail, String descriptionDetail, String specsDetail, String mainImageDetail, String thumbnailDetail, LocalDate timestampDetail) {
         this.productDetailId = productDetailId;
         this.nameProduct = nameProduct;
