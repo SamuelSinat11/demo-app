@@ -21,7 +21,6 @@ public class Transaction {
 
     public Transaction(Long transactionId, String type, double amount, String category, LocalDate startDate, String description) {
         this.transactionId = transactionId;
-
         this.type = type;
         this.amount = amount;
         this.category = category;
